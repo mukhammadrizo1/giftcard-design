@@ -1,59 +1,85 @@
-# GiftcardDesign
+# giftcard-design
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+Gift card design / print layout app built with Angular (with SSR support).
 
-## Development server
+## Requirements
 
-To start a local development server, run:
+- Node.js 20+ (recommended: latest Node 20 LTS)
+- npm (comes with Node.js)
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Install
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Run (development)
+
+Starts Angular dev server:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+Then open:
 
-To build the project run:
+- http://localhost:4200/
+
+## Build
+
+Creates production build output in `dist/`:
 
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## SSR (serve the built app)
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+This project includes an Express SSR server (`src/server.ts`). After building, you can run:
 
 ```bash
-ng test
+npm run build
+npm run serve:ssr:giftcard-design
 ```
 
-## Running end-to-end tests
+Then open:
 
-For end-to-end (e2e) testing, run:
+- http://localhost:4000/
+
+## Tests
 
 ```bash
-ng e2e
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Useful npm scripts
 
-## Additional Resources
+- `npm start` - dev server
+- `npm run build` - production build
+- `npm run watch` - build in watch mode
+- `npm test` - unit tests
+- `npm run serve:ssr:giftcard-design` - run the built SSR server
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Firebase Hosting (optional)
+
+This repo contains Firebase Hosting configuration in `firebase.json`.
+
+High-level flow:
+
+```bash
+npm run build
+firebase login
+firebase deploy
+```
+
+Notes:
+
+- Hosting `public` is set to `dist/giftcard-design/browser`.
+- The local Firebase CLI state folder `.firebase/` is intentionally ignored by git.
+
+## Project structure
+
+- `src/app/` - app UI and logic
+- `src/assets/` - static assets (fonts, images, etc.)
+- `src/styles.scss` - global styles
+- `src/server.ts` - Express SSR server entry
