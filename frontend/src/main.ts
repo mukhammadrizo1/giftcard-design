@@ -611,6 +611,8 @@ function getApiUrl(endpoint: string): string {
   return `https://giftcard-design.onrender.com${endpoint}`;
 }
 
+console.log('🚀 Korzinka Gift Card Designer v1.1 initialized. Backend target:', getApiUrl('/api'));
+
 // Download Vector PDF from Backend
 btnDownloadPdf.addEventListener('click', async () => {
   const dict = translations[state.lang];
