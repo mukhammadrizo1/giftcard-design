@@ -608,8 +608,13 @@ btnDownloadPdf.addEventListener('click', async () => {
   progressModal.classList.add('active');
   progressBarFill.style.width = '30%';
 
+  const apiBase = (import.meta as any).env?.VITE_API_URL ||
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? ''
+      : 'https://giftcard-design.onrender.com');
+
   try {
-    const response = await fetch('/api/generate-pdf', {
+    const response = await fetch(`${apiBase}/api/generate-pdf`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

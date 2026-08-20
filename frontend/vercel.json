@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://giftcard-design.onrender.com/api/:match*"
+    }
+  ]
+}

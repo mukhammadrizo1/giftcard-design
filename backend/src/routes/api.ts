@@ -11,10 +11,10 @@ const upload = multer({
 export const apiRouter = Router();
 
 /**
- * Health check endpoint
+ * Health check endpoint (Supports GET, HEAD, OPTIONS for UptimeRobot / keep-alive)
  */
-apiRouter.get('/health', (req: Request, res: Response) => {
-  res.json({
+apiRouter.all('/health', (req: Request, res: Response) => {
+  res.status(200).json({
     status: 'ok',
     timestamp: new Date().toISOString(),
     uptime: process.uptime()
