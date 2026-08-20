@@ -125,7 +125,7 @@ export class PdfGenerator {
   /**
    * Draw social icons (Facebook, Instagram, Telegram) using vector SVG paths
    */
-  static drawSocialIcons(doc: PDFKit.PDFDocument, x: number, y: number, sizePt: number = 5.2) {
+  static drawSocialIcons(doc: InstanceType<typeof PDFDocument>, x: number, y: number, sizePt: number = 5.2) {
     // Facebook
     const fbScale = sizePt / 512;
     doc.save()
@@ -158,7 +158,7 @@ export class PdfGenerator {
    * Draw a single card at exact (cardX, cardY) in points matching Website UI & Design mockup
    */
   static async drawCard(
-    doc: PDFKit.PDFDocument,
+    doc: InstanceType<typeof PDFDocument>,
     cardX: number,
     cardY: number,
     barcodeValue: string,
@@ -343,7 +343,7 @@ export class PdfGenerator {
     }
 
     const chunks: Buffer[] = [];
-    doc.on('data', (chunk) => chunks.push(chunk));
+    doc.on('data', (chunk: Buffer) => chunks.push(chunk));
 
     const outerWidthPt = mm(config.paper.outerCardWidthMm);
     const outerHeightPt = mm(config.paper.outerCardHeightMm);
