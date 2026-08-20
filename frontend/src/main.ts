@@ -602,19 +602,25 @@ btnQuickPrint.addEventListener('click', () => {
   window.print();
 });
 
+// API URL Router (Direct connection to Render on production, relative in local development)
+function getApiUrl(endpoint: string): string {
+  const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if (isLocal) {
+    return endpoint;
+  }
+  return `https://giftcard-design.onrender.com${endpoint}`;
+}
+
 // Download Vector PDF from Backend
 btnDownloadPdf.addEventListener('click', async () => {
   const dict = translations[state.lang];
   progressModal.classList.add('active');
   progressBarFill.style.width = '30%';
 
-  const apiBase = (import.meta as any).env?.VITE_API_URL ||
-    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? ''
-      : 'https://giftcard-design.onrender.com');
+  const targetUrl = getApiUrl('/api/generate-pdf');
 
   try {
-    const response = await fetch(`${apiBase}/api/generate-pdf`, {
+    const response = await fetch(targetUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
