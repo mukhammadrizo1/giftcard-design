@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Korzinka Sovg‘a Kartalari Dizayneri</title>
+  <meta name="description" content="Korzinka supermarketlari uchun chop etishga tayyor sovg'a kartalari generatori" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <!-- Navigation Header -->
+  <header class="navbar">
+    <div class="brand-section">
+      <button id="btnToggleSidebar" class="sidebar-toggle-btn" title="Panelni ochish/yopish">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="#" class="brand">
+        <div class="brand-icon">K</div>
+        <div class="brand-info">
+          <h1 data-i18n="appTitle">Korzinka Sovg‘a Kartalari</h1>
+          <p data-i18n="appSubtitle">Professional Chop Etish Generatori</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="nav-actions">
+      <!-- Language Switcher -->
+      <div class="lang-selector">
+        <button type="button" class="lang-btn active" data-lang="uz">UZ</button>
+        <button type="button" class="lang-btn" data-lang="ru">RU</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+
+      <!-- Theme Toggle (Dark / Light) -->
+      <button id="btnThemeToggle" class="theme-toggle-btn" title="Tungi/Yorug' rejim">
+        <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <!-- Print Button -->
+      <button id="btnQuickPrint" class="btn btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        <span data-i18n="quickPrint">Chop etish</span>
+      </button>
+
+      <!-- Download Vector PDF -->
+      <button id="btnDownloadPdf" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span data-i18n="downloadPdf">Vektor PDF Yuklash</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="main-layout" id="mainLayout">
+    <!-- Left Sidebar: Controls -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div>
+          <h2 data-i18n="settingsTitle">Karta Sozlamalari</h2>
+          <p data-i18n="settingsSubtitle">Qiymat, muddat va barkodlarni belgilang</p>
+        </div>
+        <button id="btnSidebarClose" class="sidebar-toggle-btn" title="Panelni yopish">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- Amount Group -->
+        <div class="form-group">
+          <label for="cardAmountInput">
+            <span data-i18n="cardAmountLabel">Karta qiymati (so‘m / сум)</span>
+            <span class="hint" data-i18n="numbersOnly">faqat raqam</span>
+          </label>
+          <input
+            type="text"
+            id="cardAmountInput"
+            class="input-control"
+            value="50 000"
+            placeholder="50 000"
+            inputmode="numeric"
+          />
+          <div class="chips-row">
+            <button type="button" class="chip-btn active" data-amount="50000">50 000</button>
+            <button type="button" class="chip-btn" data-amount="100000">100 000</button>
+            <button type="button" class="chip-btn" data-amount="200000">200 000</button>
+            <button type="button" class="chip-btn" data-amount="400000">400 000</button>
+            <button type="button" class="chip-btn" data-amount="500000">500 000</button>
+          </div>
+        </div>
+
+        <!-- Expiry Date Group -->
+        <div class="form-group">
+          <label for="expiryDateInput" data-i18n="expiryDateLabel">Amal qilish muddati</label>
+          <input
+            type="date"
+            id="expiryDateInput"
+            class="input-control"
+            value="2027-12-31"
+          />
+        </div>
+
+        <!-- Stats Card -->
+        <div class="stats-card">
+          <div class="stat-item">
+            <div class="stat-val" id="statCardsCount">21</div>
+            <div class="stat-lbl" data-i18n="cardsStat">Kartalar</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val" id="statPagesCount">1</div>
+            <div class="stat-lbl" data-i18n="pagesStat">Varaqlar</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">320×450</div>
+            <div class="stat-lbl" data-i18n="sheetStat">mm (Varaq)</div>
+          </div>
+        </div>
+
+        <!-- Barcode List & Upload -->
+        <div class="form-group">
+          <label for="barcodesTextarea">
+            <span data-i18n="barcodesLabel">Barkodlar ro‘yxati</span>
+            <span class="hint" data-i18n="onePerLine">har bir qatorda 1 ta</span>
+          </label>
+
+          <!-- Dropzone -->
+          <div class="dropzone" id="fileDropzone">
+            <input type="file" id="fileInput" accept=".txt,.csv,.xlsx,.xls" />
+            <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <p class="dropzone-text" data-i18n="dropzoneText">Faylni shu yerga tashlang yoki tanlang</p>
+            <p class="dropzone-hint" data-i18n="dropzoneHint">.txt, .csv, .xlsx (Excel) formatlari qo‘llab-quvvatlanadi</p>
+          </div>
+
+          <textarea
+            id="barcodesTextarea"
+            class="textarea-control"
+            placeholder="Barkod kodlarini kiriting...
+KZ000001
+KZ000002
+KZ000003"
+          ></textarea>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- Right Area: Sheet Live Preview -->
+    <section class="preview-container">
+      <!-- Toolbar -->
+      <div class="preview-toolbar">
+        <div class="toolbar-left">
+          <button id="btnSidebarExpand" class="sidebar-toggle-btn" title="Panelni ochish">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="pagination-controls">
+            <button id="btnPrevPage" class="nav-icon-btn" title="Oldingi varaq" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <span class="page-display" id="pageDisplay">Varaq: 1 / 1</span>
+            <button id="btnNextPage" class="nav-icon-btn" title="Keyingi varaq" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="zoom-controls">
+          <button class="zoom-btn" data-zoom="fit">Fit</button>
+          <button class="zoom-btn" data-zoom="0.45">45%</button>
+          <button class="zoom-btn" data-zoom="0.65">65%</button>
+          <button class="zoom-btn" data-zoom="0.85">85%</button>
+          <button class="zoom-btn" data-zoom="1.0">100%</button>
+        </div>
+      </div>
+
+      <!-- Viewport -->
+      <div class="preview-viewport" id="previewViewport">
+        <div class="preview-scaler" id="previewScaler">
+          <!-- 320mm × 450mm Physical Paper Container -->
+          <div class="paper-sheet" id="paperSheet">
+            <div class="cards-grid" id="cardsGrid">
+              <!-- 21 Cards will be injected dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Progress Modal -->
+  <div class="modal-overlay" id="progressModal">
+    <div class="modal-card">
+      <div class="spinner"></div>
+      <h3 id="modalTitle" data-i18n="generatingTitle">PDF Generatsiya qilinmoqda...</h3>
+      <p id="modalSubtitle" data-i18n="generatingSubtitle">Serverda vektor sifatdagi PDF yaratilmoqda, iltimos kuting</p>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

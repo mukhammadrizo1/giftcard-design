@@ -1,0 +1,22 @@
+{
+  "name": "giftcard-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:frontend": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "jsbarcode": "^3.11.6",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/jsbarcode": "^3.11.4",
+    "@types/node": "^20.17.19",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
+  }
+}

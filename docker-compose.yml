@@ -1,0 +1,13 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - BOT_TOKEN=${BOT_TOKEN}
+      - NODE_ENV=production
+      - CORS_ORIGIN=*
+    restart: unless-stopped
