@@ -374,8 +374,8 @@ export class PdfGenerator {
 
       for (let i = 0; i < pageBarcodes.length; i++) {
         const barcode = pageBarcodes[i];
-        const col = i % config.paper.columns;
-        const row = Math.floor(i / config.paper.columns);
+        const col = Math.floor(i / config.paper.rows);
+        const row = i % config.paper.rows;
 
         const outerX = marginLeftPt + col * (outerWidthPt + gapXPt);
         const outerY = marginTopPt + row * (outerHeightPt + gapYPt);
