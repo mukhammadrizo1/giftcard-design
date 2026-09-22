@@ -608,7 +608,8 @@ function getApiUrl(endpoint: string): string {
   if (isLocal) {
     return endpoint;
   }
-  return `https://giftcard-design.onrender.com${endpoint}`;
+  const base = (import.meta as any).env?.VITE_API_URL || 'https://giftcard-design.fly.dev';
+  return `${base.replace(/\/$/, '')}${endpoint}`;
 }
 
 console.log('🚀 Korzinka Gift Card Designer v1.1 initialized. Backend target:', getApiUrl('/api'));

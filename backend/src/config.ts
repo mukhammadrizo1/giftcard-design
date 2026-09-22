@@ -12,7 +12,7 @@ export const config = {
   botToken: process.env.BOT_TOKEN || '',
   nodeEnv: process.env.NODE_ENV || 'development',
   corsOrigin: process.env.CORS_ORIGIN || '*',
-  pingUrl: process.env.PING_URL || process.env.RENDER_EXTERNAL_URL || '',
+  pingUrl: process.env.PING_URL || process.env.RENDER_EXTERNAL_URL || (process.env.FLY_APP_NAME ? `https://${process.env.FLY_APP_NAME}.fly.dev` : ''),
   assetsDir: path.join(__dirname, 'assets'),
   fontsDir: path.join(__dirname, 'assets', 'fonts'),
   
